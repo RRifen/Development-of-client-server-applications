@@ -1,0 +1,12 @@
+.card {
+    width: 18rem;
+    height: 100%;
+}
+
+.card-body {
+    padding: 1em;
+}
+
+.card-button {
+    margin-top: auto;
+}
