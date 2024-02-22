@@ -1,17 +1,17 @@
-import './App.css';
-import Navigation from "./components/navigation/Navigation";
+import './Root.css';
+import Navigation from "../../components/navigation/Navigation";
 import React from "react";
-import ProductsContainer from "./components/products/ProductsContainer";
+import {Outlet} from "react-router-dom";
 
-function App() {
+function Root() {
 
     return (
         <div>
             <Navigation/>
             <header className="App-header">
-                <img src={require('./images/Wojak.png')} className="App-logo" alt="logo"/>
+                <img src={require('../../images/Wojak.png')} className="App-logo" alt="logo"/>
                 <p>
-                    Отредактировал <code>src/App.js</code> и сохранил.
+                    <code>src/Root.js</code>
                 </p>
                 <a
                     className="App-link"
@@ -22,9 +22,9 @@ function App() {
                     Github с практиками
                 </a>
             </header>
-            <ProductsContainer />
+            <Outlet />
         </div>
     );
 }
 
-export default App;
+export default Root;
