@@ -11,8 +11,8 @@
 
 .App-header {
   text-align: center;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   background-color: #111111;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -20,6 +20,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.root-page {
+  height: 100%;
 }
 
 @keyframes App-logo-spin {

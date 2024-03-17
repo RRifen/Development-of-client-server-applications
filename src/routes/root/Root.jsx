@@ -6,13 +6,9 @@ import {Outlet} from "react-router-dom";
 function Root() {
 
     return (
-        <div>
+        <div className="root-page">
             <Navigation/>
             <header className="App-header">
-                <img src={require('../../images/Wojak.png')} className="App-logo" alt="logo"/>
-                <p>
-                    <code>src/Root.js</code>
-                </p>
                 <a
                     className="App-link"
                     href="https://github.com/RRifen/Development-of-client-server-applications"

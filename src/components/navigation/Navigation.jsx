@@ -22,6 +22,7 @@ const Navigation = () => {
                     <Nav.Link><Link to={`/profile`} className={styles.routerLink}>Профиль</Link></Nav.Link>
                     <Nav.Link><Link to={`/catalog`} className={styles.routerLink}>Товары</Link></Nav.Link>
                     <Nav.Link><Link to={`/about`} className={styles.routerLink}>О нас</Link></Nav.Link>
+                    <Nav.Link><Link to={`/support`} className={styles.routerLink}>Чат поддержки</Link></Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

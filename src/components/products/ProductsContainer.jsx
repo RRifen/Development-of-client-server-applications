@@ -2,43 +2,45 @@ import ProductCard from "./cards/ProductCard";
 import React from "react";
 import {Col, Container, Row} from "react-bootstrap";
 
-const ProductsContainer = () => {
+const ProductsContainer = ({ products }) => {
 
-    const products = [
-        {
-            title: "title1",
-            description: "description1",
-            imageSrc: "https://opis-cdn.tinkoffjournal.ru/mercury/first-phones-pic-3.gowgy5.jpg"
-        },
-        {
-            title: "title2",
-            description: "description2",
-            imageSrc: "https://www.ferra.ru/imgs/2018/11/24/16/2466602/3af742b2a1abb24e2af7bcf6d5adb8bede813971.jpg"
-        },
-        {
-            title: "title3",
-            description: "description3",
-            imageSrc: "https://www.dgl.ru/wp-content/uploads/2017/03/dgl_dgl_01_2114_7507.jpg"
-        },
-        {title: "title4", description: "description4", imageSrc: "https://pwv.ru/upload/iblock/237/7.jpg"},
-        {
-            title: "title5",
-            description: "description5",
-            imageSrc: "https://www.ferra.ru/imgs/2018/11/24/16/2466595/eaf8f04f73bac8273813224ab70487ad4face19c.jpg"
+    const ROW_SIZE = 4;
+
+    const getProductCol = (i) => {
+        return (
+            <Col className="d-flex mt-2" key={i}>
+                <ProductCard {...products[i]}/>
+            </Col>
+        )
+    }
+
+    const getProductRow = (rowIndex) => {
+        const cols = [];
+        const max = Math.min(ROW_SIZE * (rowIndex + 1), products.length);
+        for (let i = ROW_SIZE * rowIndex; i < max; i++) {
+            cols.push(getProductCol(i));
         }
-    ];
+
+        return (
+            <Row className="justify-content-around" key={rowIndex}>
+                {cols}
+            </Row>
+        )
+    }
+
+    const getProductRows = () => {
+        const max = (products.length - 1) / ROW_SIZE + 1;
+        const rows = [];
+        for (let i = 0; i < max; i++) {
+            rows.push(getProductRow(i));
+        }
+
+        return rows;
+    }
 
     return (
         <Container>
-            <Row>
-                {
-                    products.map((product) =>
-                        <Col className="d-flex justify-content-center mt-2">
-                            <ProductCard {...product}/>
-                        </Col>
-                    )
-                }
-            </Row>
+            {getProductRows()}
         </Container>
     );
 };
