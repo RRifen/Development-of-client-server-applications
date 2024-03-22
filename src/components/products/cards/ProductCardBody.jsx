@@ -8,7 +8,7 @@ const ProductCardBody = ({title, description, id}) => {
     return (
         <Card.Body className={classes.cardBody + " d-flex flex-column justify-content-end"}>
             <Card.Title>{title}</Card.Title>
-            <Card.Text className={classes.readMore}>
+            <Card.Text as="div" className={classes.readMore}>
                 <div className={classes.readMoreDescription}>
                     {description}
                 </div>

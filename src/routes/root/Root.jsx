@@ -2,12 +2,14 @@ import './Root.css';
 import Navigation from "../../components/navigation/Navigation";
 import React from "react";
 import {Outlet} from "react-router-dom";
+import {TermsOfUse} from "../../components/terms/TermsOfUse";
 
 function Root() {
 
     return (
         <div className="root-page">
             <Navigation/>
+            <TermsOfUse/>
             <header className="App-header">
                 <a
                     className="App-link"

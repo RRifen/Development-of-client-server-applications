@@ -11,6 +11,9 @@ import Catalog from "./routes/catalog/Catalog";
 import About from "./routes/about/About";
 import Item from "./routes/catalog/item/Item";
 import Support from "./routes/support/Support";
+import {Provider} from "react-redux";
+import configureStore from "./redux/store";
+import {PersistGate} from "redux-persist/integration/react";
 
 const products = [
     {
@@ -48,8 +51,8 @@ const products = [
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Root />,
-        errorElement: <ErrorPage />,
+        element: <Root/>,
+        errorElement: <ErrorPage/>,
         children: [
             {
                 path: "profile",
@@ -57,30 +60,36 @@ const router = createBrowserRouter([
             },
             {
                 path: "catalog",
-                element: <Catalog products={products} />,
+                element: <Catalog products={products}/>,
                 children: [
                     {
                         path: ":itemId",
-                        element: <Item products={products} />,
+                        element: <Item products={products}/>,
                     }
                 ]
             },
             {
                 path: "about",
-                element: <About />
+                element: <About/>
             },
             {
                 path: "support",
-                element: <Support />
+                element: <Support/>
             }
         ]
     },
 ]);
 
+const {store, persistor} = configureStore();
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <RouterProvider router={router}/>
+            </PersistGate>
+        </Provider>
+    </React.StrictMode>
 );
