@@ -21,6 +21,7 @@ const Navigation = () => {
                 <Nav className="me-auto">
                     <Nav.Link as="div"><Link to={`/profile`} className={styles.routerLink}>Профиль</Link></Nav.Link>
                     <Nav.Link as="div"><Link to={`/catalog`} className={styles.routerLink}>Товары</Link></Nav.Link>
+                    <Nav.Link as="div"><Link to={`/add-product`} className={styles.routerLink}>Добавить товар</Link></Nav.Link>
                     <Nav.Link as="div"><Link to={`/about`} className={styles.routerLink}>О нас</Link></Nav.Link>
                     <Nav.Link as="div"><Link to={`/support`} className={styles.routerLink}>Чат поддержки</Link></Nav.Link>
                 </Nav>

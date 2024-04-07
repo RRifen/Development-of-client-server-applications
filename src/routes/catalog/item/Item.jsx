@@ -1,11 +1,12 @@
 import SingleProduct from "../../../components/items/singleProduct/SingleProduct";
 import BackgroundForProduct from "../../../components/items/background/BackgroundForProduct";
 
-const Item = ({products}) => {
+const Item = () => {
+
     return (
         <>
             <BackgroundForProduct/>
-            <SingleProduct products={products} />
+            <SingleProduct/>
         </>
     )
 }

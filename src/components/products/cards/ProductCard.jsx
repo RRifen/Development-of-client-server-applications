@@ -3,11 +3,11 @@ import Card from "react-bootstrap/Card";
 import ProductCardBody from "./ProductCardBody";
 import classes from "./Card.module.css";
 
-const ProductCard = ({title, description, imageSrc, id}) => {
+const ProductCard = ({deletionCallback, name, description, imageSrc, productId}) => {
     return (
         <Card className={classes.card}  >
             <Card.Img variant="top" src={imageSrc}/>
-            <ProductCardBody title={title} description={description} id={id} />
+            <ProductCardBody deletionCallback={deletionCallback} title={name} description={description} id={productId} />
         </Card>
     );
 };

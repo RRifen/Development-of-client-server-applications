@@ -1,15 +1,17 @@
 import ProductCard from "./cards/ProductCard";
 import React from "react";
 import {Col, Container, Row} from "react-bootstrap";
+import axios from "axios";
+import {DELETE_PRODUCT} from "../../constants/URLS";
 
-const ProductsContainer = ({ products }) => {
+const ProductsContainer = ({products, setProducts}) => {
 
     const ROW_SIZE = 4;
 
     const getProductCol = (i) => {
         return (
-            <Col className="d-flex mt-2" key={i}>
-                <ProductCard {...products[i]}/>
+            <Col className="col-3 d-flex mt-2" key={i}>
+                <ProductCard deletionCallback={deletionCallback} {...products[i]}/>
             </Col>
         )
     }
@@ -22,7 +24,7 @@ const ProductsContainer = ({ products }) => {
         }
 
         return (
-            <Row className="justify-content-around" key={rowIndex}>
+            <Row className="justify-content-center" key={rowIndex}>
                 {cols}
             </Row>
         )
@@ -36,6 +38,17 @@ const ProductsContainer = ({ products }) => {
         }
 
         return rows;
+    }
+
+    const deletionCallback = (id) => {
+        axios.delete(`${DELETE_PRODUCT + id}`)
+            .then(response => {
+                console.log(`Deleted product with ID ${id}`);
+                setProducts(products.filter((product) => product.productId !== id))
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     return (

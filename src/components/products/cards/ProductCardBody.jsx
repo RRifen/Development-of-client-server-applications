@@ -2,9 +2,11 @@ import React from 'react';
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import classes from "./Card.module.css";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
-const ProductCardBody = ({title, description, id}) => {
+const ProductCardBody = ({deletionCallback, title, description, id}) => {
+    const navigate = useNavigate();
+
     return (
         <Card.Body className={classes.cardBody + " d-flex flex-column justify-content-end"}>
             <Card.Title>{title}</Card.Title>
@@ -16,7 +18,11 @@ const ProductCardBody = ({title, description, id}) => {
 
                 </Link>
             </Card.Text>
-            <Button variant="primary" className={classes.cardButton}>В корзину</Button>
+            <Button variant="info" className={classes.cardButton + " mb-2"} onClick={() => navigate("modify/" + id)}>Изменить
+                товар</Button>
+            <Button variant="danger" className={classes.cardButton} onClick={() => {
+                deletionCallback(id);
+            }}>Удалить товар</Button>
         </Card.Body>
     );
 };

@@ -1,30 +1,42 @@
 import styles from "./SingleProduct.module.css";
 import {Col, Container, Image, Row} from "react-bootstrap";
 import {Link, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {GET_PRODUCT} from "../../../constants/URLS";
 
-const SingleProduct = ({products}) => {
+const SingleProduct = () => {
 
     const { itemId } = useParams();
+    const [product, setProduct] = useState({name: "", description: "", price: 10, imageSrc: ""});
+
+    useEffect(() => {
+        axios.get(GET_PRODUCT + itemId)
+            .then(response => {
+                setProduct(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
 
     return (
         <Container className={styles.productContainer}>
             <Link to={"/catalog"} href="src/components/items#" className={styles.close} />
             <Row>
                 <Col xs="6" className={styles.productImage}>
-                    <Image src={products[itemId - 1].imageSrc} fluid alt="Product Image"/>
+                    <Image src={product.imageSrc} fluid alt="Product Image"/>
                 </Col>
                 <Col xs="6" className={styles.productDetails}>
-                    <h2>Product Name</h2>
-                    <p className={styles.price}>$99.99</p>
-                    <p className={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
-                        magna sit
-                        amet lorem bibendum consectetur.</p>
-                    <button>Add to Cart</button>
+                    <h2>{product.name}</h2>
+                    <p className={styles.price}>{product.price}</p>
+                    <p className={styles.description}>{product.description}</p>
+                    <button>Добавить в корзину</button>
                 </Col>
             </Row>
             <Row>
                 <div></div>
-                Check our other goods
+                Наши другие товары:
 
             </Row>
         </Container>

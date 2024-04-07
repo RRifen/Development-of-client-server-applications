@@ -1,0 +1,5 @@
+export const GET_PRODUCTS = "http://localhost:8080/products"
+export const POST_PRODUCTS = "http://localhost:8080/products"
+export const PATCH_PRODUCT = "http://localhost:8080/products/"
+export const DELETE_PRODUCT = "http://localhost:8080/products/"
+export const GET_PRODUCT = "http://localhost:8080/products/"
