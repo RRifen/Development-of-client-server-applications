@@ -11,7 +11,7 @@ const Catalog = () => {
     useEffect(() => {
         axios.get(GET_PRODUCTS)
             .then(response => {
-                setProducts(response.data._embedded.products);
+                setProducts(response.data);
             })
             .catch(error => {
                 console.error(error);

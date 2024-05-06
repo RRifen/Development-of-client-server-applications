@@ -1,15 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit'
 import termsOfUseReducer from './slices/termsOfUseSlice'
+import authReducer from './slices/roleSlice'
 import {persistStore, persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-
-const persistConfig = {
-    key: 'termsOfUse',
-    storage,
-}
-
-const persistedTermsOfUseReducer = persistReducer(persistConfig, termsOfUseReducer)
+const persistedTermsOfUseReducer = persistReducer({key: 'termsOfUse', storage}, termsOfUseReducer)
+const persistedAuthReducer = persistReducer({key: 'auth', storage}, authReducer)
 
 export default () => {
     let store = configureStore({
@@ -17,7 +13,8 @@ export default () => {
             serializableCheck: false
         }),
         reducer: {
-            termsOfUse: persistedTermsOfUseReducer
+            termsOfUse: persistedTermsOfUseReducer,
+            auth: persistedAuthReducer
         },
     })
     let persistor = persistStore(store)
