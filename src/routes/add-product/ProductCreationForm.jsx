@@ -12,7 +12,8 @@ const ProductCreationForm = () => {
     const [price, setPrice] = useState(10);
     const [imageSrc, setImageSrc] = useState("");
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         axios.post(POST_PRODUCTS, {
             name: name,
             description: description,

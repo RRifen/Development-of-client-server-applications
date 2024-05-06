@@ -22,7 +22,8 @@ const ProductUpdateForm = () => {
             });
     }, []);
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         axios.patch(PATCH_PRODUCT + itemId, product)
             .then((response) => {
                 console.log(response);
@@ -34,7 +35,7 @@ const ProductUpdateForm = () => {
 
     return (
         <Container className={styles.productContainer}>
-            <Link to={"/catalog"} href="src/components/items#" className={styles.close} />
+            <Link to={"/catalog"} className={styles.close} />
             <h2>Обновить товар</h2>
             <Row className={"mt-4"}>
                 <Form onSubmit={handleSubmit}>
